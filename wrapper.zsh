@@ -19,4 +19,3 @@ else
 fi
 
 jq ". + {last: $lasttime}" <<< $messages > last.json
-
