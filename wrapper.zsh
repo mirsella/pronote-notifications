@@ -12,7 +12,7 @@ nLast=$(jq -j '.informations, .discussions, .others' <<< $last)
 if ! grep -q '000' <<< $nMessages; then 
   if [ $lasttime -gt 36 ]; then
     notif "Still Got Notifications ! $nMessages"
-  elif grep -q '000' <<< nLast; then 
+  elif grep -q '000' <<< $nLast; then 
     notif "New Notifications ! $nLast"
   fi
 else 
