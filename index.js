@@ -25,12 +25,12 @@ process.env.password || error("didn't provided a pronote password in .env !");
         if (text.includes("notificationsCommunication")) {
           res.json().then(json => {
             let notificationsCommunication = json.donneesSec._Signature_.notificationsCommunication
-            let onglet = { 131: "discussions", 104: "i don't know", 8: "informations" }
+            let onglet = { 131: "discussions", 104: "others", 8: "informations" }
             response = {}
             notificationsCommunication.forEach(item => {
               response[onglet[item.onglet]] = item.nb
             })
-            console.log(response)
+            console.log(JSON.stringify(response))
           })
           resolve()
         }
