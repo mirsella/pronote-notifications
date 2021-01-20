@@ -6,7 +6,7 @@ lasttime=$(jq '.last' <<< $last)
 ((lasttime++))
 
 nMessages=$(jq -j '.informations, .discussions, .others' <<< $messages)
-nLast$(jq -j '.informations, .discussions, .others' <<< $last)
+nLast=$(jq -j '.informations, .discussions, .others' <<< $last)
 
 if ! grep -q '000' <<< $nMessages; then 
   if [ $lasttime > 36 ]; then
