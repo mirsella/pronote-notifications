@@ -1,6 +1,7 @@
 #!/bin/zsh
 cd /home/mirsella/pronote-notifications
 messages=$(node index.js)
+[ ! -f last.json ] && echo '{ "discussions": 0, "others": 0, "informations": 0, "last": 0 }' > last.json
 last=$(cat last.json)
 lasttime=$(jq '.last' <<< $last)
 ((lasttime++))
