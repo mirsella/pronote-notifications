@@ -9,7 +9,7 @@ nMessages=$(jq -j '.informations, .discussions, .others' <<< $messages)
 nLast=$(jq -j '.informations, .discussions, .others' <<< $last)
 
 if ! grep -q '000' <<< $nMessages; then 
-  if [ $lasttime > 36 ]; then
+  if [ $lasttime -gt 36 ]; then
     notif "Still Got Notifications ! $nMessages"
   elif grep -q '000' <<< nLast; then 
     notif "New Notifications ! $nLast"
@@ -18,5 +18,5 @@ else
   lasttime=0
 fi
 
-jq ". + {last: $lasttime}" <<< $last > last.json
+jq ". + {last: $lasttime}" <<< $messages > last.json
 
