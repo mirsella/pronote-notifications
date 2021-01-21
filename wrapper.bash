@@ -14,6 +14,8 @@ if ! grep -q '000' <<< $nMessages; then
     notif "Still Got Notifications ! $nMessages"
   elif grep -q '000' <<< $nLast; then 
     notif "New Notifications ! $nMessages"
+  elif [ $nMessages -gt $nLast ]; then 
+    notif "Even More Notifications ! $nMessages"
   fi
 else 
   lasttime=0
