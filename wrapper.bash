@@ -18,7 +18,7 @@ if ! grep -q '000' <<< $nMessages; then
     notif "Even More Notifications ! $nMessages"
   fi
 else 
-  lasttime=0
+  count=0
 fi
 
 jq ". + {last: $lasttime}" <<< $messages > last.json
