@@ -13,12 +13,12 @@ nMessages=$(jq -j '.informations, .discussions, .others' <<< $messages)
 nLast=$(jq -j '.informations, .discussions, .others' <<< $last)
 
 if ! grep -q '000' <<< $nMessages; then 
-  if bc -l <<< "$count/16" | grep -q '^[0-9]*\.*00000000000000000000$'; then
+  if [ $nMessages -gt $nLast ]; then 
+    notif "Even More Notifications ! $nMessages"
+  elif bc -l <<< "$count/16" | grep -q '^[0-9]*\.*00000000000000000000$'; then
     notif "Still Got Notifications ! $nMessages"
   elif grep -q '000' <<< $nLast; then 
     notif "New Notifications ! $nMessages"
-  elif [ $nMessages -gt $nLast ]; then 
-    notif "Even More Notifications ! $nMessages"
   fi
 else 
   count=0
