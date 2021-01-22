@@ -21,4 +21,4 @@ else
   count=0
 fi
 
-jq ". + {last: $lasttime}" <<< $messages > last.json
+jq ". + {last: $count}" <<< $messages > last.json
