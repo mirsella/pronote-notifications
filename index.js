@@ -15,7 +15,11 @@ process.env.password || error("didn't provided a pronote password in .env !");
 (async () => {
   const browser = await puppeteer.launch({headless: true})
   const page = await browser.newPage()
-  await page.goto(process.env.url, {waitUntil: 'networkidle0', timeout: 60000})
+  await page.goto(process.env.url, {waitUntil: 'networkidle0', timeout: 90000})
+  .catch(e => {
+    console.error(e)
+    exit(1)
+  })
   await page.type('#id_50', process.env.username)
   await page.type('#id_51', process.env.password)
   await page.click('#id_39')
