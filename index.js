@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const chalk = require('chalk')
 require('dotenv').config()
 
-const error = (text) => {
+const error = text => {
   console.log(chalk.redBright.bold(text))
   process.exit(1)
 } 
@@ -12,7 +12,7 @@ process.env.url || error("didn't provided a pronote url in .env !");
 process.env.username || error("didn't provided a pronote username in .env !");
 process.env.password || error("didn't provided a pronote password in .env !");
 
-(async () => {
+const getNotif = async () => {
   const browser = await puppeteer.launch({headless: true})
   const page = await browser.newPage()
   await page.goto(process.env.url, {waitUntil: 'networkidle0', timeout: 90000})
@@ -42,5 +42,11 @@ process.env.password || error("didn't provided a pronote password in .env !");
     }) 
   })
   await browser.close()
-})();
+}
 
+try {
+  getNotif()
+} catch(e) {
+  console.log(e)
+  getNotif
+}

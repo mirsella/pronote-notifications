@@ -1,7 +1,6 @@
 #!/bin/bash
 cd /home/mirsella/pronote-notifications
-messages=$(node index.js || notif 'error pronote-notifications')
-# if ! grep -q '^.*$' last.json; then
+messages=$(node index.js)
 if [ ! "$(jq -j '. | length' last.json)" == "4" ]; then
   echo '{ "discussions": 0, "others": 0, "informations": 0, "last": 0 }' > last.json; 
 fi
