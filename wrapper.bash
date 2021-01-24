@@ -11,13 +11,19 @@ count=$(jq '.last' <<< $last)
 nMessages=$(jq -j '.informations, .discussions, .others' <<< $messages)
 nLast=$(jq -j '.informations, .discussions, .others' <<< $last)
 
+echo "$nMessages $messages
+$nLast $last" > log.txt
+
+
 if ! grep -q '000' <<< $nMessages; then 
-  if [ $nMessages -gt $nLast ]; then 
-    notif "Even More Notifications ! $nMessages"
-  elif bc -l <<< "$count/16" | grep -q '^[0-9]*\.*00000000000000000000$'; then
-    notif "Still Got Notifications ! $nMessages"
-  elif grep -q '000' <<< $nLast; then 
+  if grep -q '000' <<< $nLast; then 
     notif "New Notifications ! $nMessages"
+  elif bc -l <<< "$count/10" | grep -q '^[0-9]*\.*00000000000000000000$'; then
+    notif "Still Got Notifications ! $nMessages"
+  elif [ $nMessages -gt $nLast ]; then 
+    notif "Even More Notifications ! $nMessages"
+  else
+    echo nothing matched
   fi
 else 
   count=0

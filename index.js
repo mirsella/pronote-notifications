@@ -47,6 +47,6 @@ const getNotif = async () => {
 try {
   getNotif()
 } catch(e) {
-  console.log(e)
+  console.error(e)
   getNotif
 }
