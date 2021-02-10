@@ -48,5 +48,5 @@ try {
   getNotif()
 } catch(e) {
   console.error(e)
-  getNotif
+  getNotif()
 }
