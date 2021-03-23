@@ -12,7 +12,8 @@ count=$(jq '.last' <<< $last)
 nMessages=$(jq -j '.informations, .discussions, .others' <<< $messages)
 nLast=$(jq -j '.informations, .discussions, .others' <<< $last)
 
-echo "$nMessages $messages
+echo "$(date)
+$nMessages $messages
 $nLast $last" > log.txt
 
 
