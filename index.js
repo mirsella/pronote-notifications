@@ -13,7 +13,7 @@ process.env.username || error("didn't provided a pronote username in .env !");
 process.env.password || error("didn't provided a pronote password in .env !");
 
 const getNotif = async () => {
-  const browser = await puppeteer.launch({headless: true})
+  const browser = await puppeteer.launch({headless: true, ignoreHTTPSErrors: true})
   const page = await browser.newPage()
   await page.goto(process.env.url, {waitUntil: 'networkidle0', timeout: 90000})
   .catch(e => {
