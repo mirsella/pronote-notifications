@@ -23,7 +23,7 @@ if ! grep -q '000' <<< $nMessages; then
   elif [ $nMessages -gt $nLast ]; then 
     notif "Even More Notifications ! $nMessages"
   else
-    echo nothing matched
+    echo 'got notif, waiting to send a new push notif'
   fi
 else 
   count=0
